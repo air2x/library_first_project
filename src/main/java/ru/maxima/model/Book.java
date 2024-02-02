@@ -4,6 +4,7 @@ package ru.maxima.model;
 import jakarta.validation.constraints.NotEmpty;
 
 public class Book {
+    private int id;
     @NotEmpty(message = "Name of book should not be empty")
     private String nameOfBook;
     @NotEmpty(message = "Author of book should not be empty")
@@ -15,6 +16,14 @@ public class Book {
         this.nameOfBook = nameOfBook;
         this.authorOfBook = authorOfBook;
         this.yearOfWritingBook = yearOfWritingBook;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNameOfBook() {
