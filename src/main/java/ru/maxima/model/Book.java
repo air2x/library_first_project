@@ -12,7 +12,11 @@ public class Book {
     @NotEmpty(message = "Year of wright book should not be empty")
     private int yearOfWritingBook;
 
-    public Book(String nameOfBook, String authorOfBook, int yearOfWritingBook) {
+    public Book() {
+    }
+
+    public Book(int id, String nameOfBook, String authorOfBook, int yearOfWritingBook) {
+        this.id = id;
         this.nameOfBook = nameOfBook;
         this.authorOfBook = authorOfBook;
         this.yearOfWritingBook = yearOfWritingBook;

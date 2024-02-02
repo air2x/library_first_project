@@ -23,22 +23,22 @@ public class PersonDAO {
         return people;
     }
 
-    public Person show(int id) {
+    public Person showPerson(int id) {
         return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);
     }
 
-    public void save(Person person) {
+    public void savePerson(Person person) {
         person.setId(++PEOPLE_COUNT);
         people.add(person);
     }
 
-    public void update(int id, Person updatePerson) {
-        Person personToBeUpdated = show(id);
+    public void updatePerson(int id, Person updatePerson) {
+        Person personToBeUpdated = showPerson(id);
         personToBeUpdated.setFullName(updatePerson.getFullName());
         personToBeUpdated.setYearOfBirth(updatePerson.getYearOfBirth());
     }
 
-    public void delete(int id) {
+    public void deletePerson(int id) {
         people.removeIf(person -> person.getId() == id);
     }
 }
