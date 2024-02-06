@@ -39,8 +39,8 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") @Valid Person person,
-                         BindingResult bindingResult) {
+    public String createPerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "view-to-create-new-person";
         }
@@ -49,15 +49,15 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String editPerson(Model model, @PathVariable("id") int id) {
         model.addAttribute("person", personDAO.showPerson(id));
         return "view-to-edit-person";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Person person,
-                         BindingResult bindingResult,
-                         @PathVariable("id") int id) {
+    public String updatePerson(@ModelAttribute("person") @Valid Person person,
+                               BindingResult bindingResult,
+                               @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "view-to-edit-person";
         }
@@ -66,7 +66,7 @@ public class PeopleController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") int id) {
+    public String deletePerson(@PathVariable("id") int id) {
         personDAO.deletePerson(id);
         return "redirect:/people";
     }

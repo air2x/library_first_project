@@ -9,7 +9,6 @@ public class Book {
     private String nameOfBook;
     @NotEmpty(message = "Author of book should not be empty")
     private String authorOfBook;
-    @NotEmpty(message = "Year of wright book should not be empty")
     private int yearOfWritingBook;
 
     public Book() {

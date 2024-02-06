@@ -1,44 +1,43 @@
 package ru.maxima.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.maxima.model.Person;
+import ru.maxima.model.PersonMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class PersonDAO {
-    private static int PEOPLE_COUNT;
-    private List<Person> people;
 
-    {
-        people = new ArrayList<>();
-        people.add(new Person(++PEOPLE_COUNT, "Ivanov Ivan", 1995));
-        people.add(new Person(++PEOPLE_COUNT, "Petrov Ivan", 1980));
-        people.add(new Person(++PEOPLE_COUNT, "Sidorov Grisha", 1953));
-        people.add(new Person(++PEOPLE_COUNT, "Pushkin Alexandr", 2000));
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public PersonDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<Person> index() {
-        return people;
+        return jdbcTemplate.query("SELECT * FROM Person", new PersonMapper());
     }
 
     public Person showPerson(int id) {
-        return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id},
+                        new PersonMapper())
+                .stream().findAny().orElse(null);
     }
 
     public void savePerson(Person person) {
-        person.setId(++PEOPLE_COUNT);
-        people.add(person);
+        jdbcTemplate.update("INSERT INTO Person VALUES(1, ?, ?)", person.getFullName(), person.getYearOfBirth());
     }
 
     public void updatePerson(int id, Person updatePerson) {
-        Person personToBeUpdated = showPerson(id);
-        personToBeUpdated.setFullName(updatePerson.getFullName());
-        personToBeUpdated.setYearOfBirth(updatePerson.getYearOfBirth());
+        jdbcTemplate.update("UPDATE Person SET full_name=?, year_of_birth=? WHERE id=?", updatePerson.getFullName(),
+                updatePerson.getYearOfBirth(), id);
     }
 
     public void deletePerson(int id) {
-        people.removeIf(person -> person.getId() == id);
+        jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
     }
 }
