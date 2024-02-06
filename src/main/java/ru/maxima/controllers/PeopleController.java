@@ -21,7 +21,7 @@ public class PeopleController {
     }
 
     @GetMapping
-    public String showPeople(Model model) {
+    public String showAllPeople(Model model) {
         model.addAttribute("people", personDAO.index());
         return "view-with-all-people";
     }
@@ -33,7 +33,7 @@ public class PeopleController {
     }
 
     @GetMapping("/new")
-    public String newPerson(Model model) {
+    public String addNewPerson(Model model) {
         model.addAttribute("person", new Person());
         return "view-to-create-new-person";
     }

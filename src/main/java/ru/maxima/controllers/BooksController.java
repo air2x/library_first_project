@@ -21,7 +21,7 @@ public class BooksController {
     }
 
     @GetMapping
-    public String showBooks(Model model) {
+    public String showAllBooks(Model model) {
         model.addAttribute("books", bookDAO.index());
         return "view-with-all-books";
     }
@@ -33,14 +33,14 @@ public class BooksController {
     }
 
     @GetMapping("/new")
-    public String newBook(Model model) {
+    public String addNewBook(Model model) {
         model.addAttribute("book", new Book());
         return "view-to-create-new-book";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("book") @Valid Book book,
-                         BindingResult bindingResult) {
+    public String createBook(@ModelAttribute("book") @Valid Book book,
+                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "view-to-create-new-book";
         }
