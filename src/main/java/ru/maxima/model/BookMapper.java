@@ -1,7 +1,6 @@
 package ru.maxima.model;
 
 import org.springframework.jdbc.core.RowMapper;
-import ru.maxima.model.Book;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

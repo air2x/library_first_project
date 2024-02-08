@@ -5,9 +5,9 @@ import jakarta.validation.constraints.NotEmpty;
 
 public class Book {
     private int id;
-    @NotEmpty(message = "Name of book should not be empty")
+    @NotEmpty(message = "Назавние не должно быть пустым")
     private String nameOfBook;
-    @NotEmpty(message = "Author of book should not be empty")
+    @NotEmpty(message = "Автор не должен быть пустым")
     private String authorOfBook;
     private int yearOfWritingBook;
 
