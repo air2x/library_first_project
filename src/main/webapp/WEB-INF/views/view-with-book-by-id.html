@@ -2,17 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Book</title>
+    <title>Книга</title>
 </head>
 <body>
+<a>Название книги: </a>
 <p th:text="${book.getNameOfBook()}">Value</p>
+<a>Автор книги: </a>
 <p th:text="${book.getAuthorOfBook()}">Value</p>
+<a>Год написания книги: </a>
 <p th:text="${book.getYearOfWritingBook()}">Value</p>
 
-<a th:href="@{/books/{id}/edit(id=${book.getId()})}">Edit</a>
+<a th:href="@{/books/{id}/edit(id=${book.getId()})}">Изменить книгу</a>
 
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
-    <input type="submit" value="Delete book"/>
+    <input type="submit" value="Удалить книгу"/>
+</form>
+<br/>
+<br/>
+<form th:method="PATCH" th:action="@{/books}">
+    <label for="person">Выберите кому назначить книгу:</label>
+    <select th:object="${person}" th:field="*{id}" id="person">
+        <option th:each="person : ${people}" th:value="${person.getId()}"
+                th:text="${person.getFullName()}"></option>
+        <input type="submit" value="Назначить книгу"/>
+    </select>
 </form>
 </body>
 </html>

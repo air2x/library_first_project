@@ -2,25 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New book</title>
+    <title>Новая книга</title>
 </head>
 <body>
 <form th:method="POST" th:action="@{/books}" th:object="${book}">
-    <label for="nameOfBook">Enter name of book:</label>
+    <label for="nameOfBook">Введите название книги:</label>
     <input type="text" th:field="*{nameOfBook}" id="nameOfBook"/>
     <div style="color: red" th:if="${#fields.hasErrors('nameOfBook')}" th:errors="*{nameOfBook}">Name error</div>
     <br/>
-    <label for="authorOfBook">Enter author of book:</label>
+    <label for="authorOfBook">Введите автора книги:</label>
     <input type="text" th:field="*{authorOfBook}" id="authorOfBook"/>
     <div style="color: red" th:if="${#fields.hasErrors('authorOfBook')}" th:errors="*{authorOfBook}">Year error</div>
     <br/>
-    <label for="yearOfWritingBook">Enter year of writing book:</label>
+    <label for="yearOfWritingBook">Введиет год написания книги:</label>
     <input type="text" th:field="*{yearOfWritingBook}" id="yearOfWritingBook"/>
     <div style="color: red" th:if="${#fields.hasErrors('yearOfWritingBook')}" th:errors="*{yearOfWritingBook}">Year
         error
     </div>
     <br/>
-    <input type="submit" value="Create book!"/>
+    <input type="submit" value="Создать книгу!"/>
 </form>
 </body>
 </html>

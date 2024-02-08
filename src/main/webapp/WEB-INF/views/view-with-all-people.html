@@ -2,21 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All people</title>
+    <title>Все люди</title>
 </head>
 <body>
 <div th:each="person : ${people}">
-    <a>Full name: </a>
+    <a>ФИО: </a>
     <a th:href="@{/people/{id}(id=${person.getId()})}"
        th:text="${person.getFullName()}"></a>
-    <a>, Year of birth: </a>
+    <a>, Год рождения: </a>
     <a th:href="@{/people/{id}(id=${person.getId()})}"
        th:text="${person.getYearOfBirth()}"></a>
 </div>
 
 <br/>
 <hr/>
-<a href="/people/new">Create new person</a>
+<a href="/people/new">Добавить нового человека</a>
 
 </body>
 </html>

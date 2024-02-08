@@ -7,17 +7,21 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.maxima.dao.BookDAO;
+import ru.maxima.dao.PersonDAO;
 import ru.maxima.model.Book;
+import ru.maxima.model.Person;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
 
     private final BookDAO bookDAO;
+    private final PersonDAO personDAO;
 
     @Autowired
-    public BooksController(BookDAO bookDAO) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
     }
 
     @GetMapping
@@ -27,8 +31,10 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public String showPerson(@PathVariable("id") int id, Model model) {
+    public String showBooks(@PathVariable("id") int id, Model model,
+                            @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.showBook(id));
+        model.addAttribute("people", personDAO.index());
         return "view-with-book-by-id";
     }
 

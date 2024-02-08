@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All books</title>
+    <title>Все книги</title>
 </head>
 <body>
 <div th:each="book : ${books}">
-    <a>Book name: </a>
+    <a>Название книги: </a>
     <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getNameOfBook()}"></a>
-    <a>, Author of book: </a>
+    <a>, Автор: </a>
     <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getAuthorOfBook()}"></a>
-    <a>, Year of writing book: </a>
+    <a>, Год: </a>
     <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getYearOfWritingBook()}"></a>
 </div>
 
 <br/>
 <hr/>
-<a href="/books/new">Add new book</a>
+<a href="/books/new">Добавить книгу</a>
 
 </body>
 </html>
