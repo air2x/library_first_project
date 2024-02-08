@@ -1,9 +1,10 @@
 package ru.maxima.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import ru.maxima.model.Book;
+import ru.maxima.model.BookMapper;
 import ru.maxima.model.Person;
 import ru.maxima.model.PersonMapper;
 
@@ -26,7 +27,7 @@ public class PersonDAO {
 
     public Optional<Person> showPerson(String fullName) {
         return jdbcTemplate.query("SELECT * FROM Person WHERE full_name=?", new Object[]{fullName},
-                new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
+                new PersonMapper()).stream().findAny();
     }
 
     public Person showPerson(int id) {
@@ -47,5 +48,10 @@ public class PersonDAO {
 
     public void deletePerson(int id) {
         jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
+    }
+
+    public List<Book> showBooksOnTheHands(int id) {
+        return jdbcTemplate.query("SELECT * FROM Book JOIN Person P on P.id = Book.person_id WHERE person_id=?",
+                new Object[]{id}, new BookMapper());
     }
 }

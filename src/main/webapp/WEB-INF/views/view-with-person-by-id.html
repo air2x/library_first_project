@@ -18,5 +18,18 @@
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Удалить человека"/>
 </form>
+
+<hr/>
+<a>Книги на руках:</a>
+<div th:each="book : ${books}">
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getNameOfBook()}"></a>
+    <a>, </a>
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getAuthorOfBook()}"></a>
+    <a>, </a>
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
+       th:text="${book.getYearOfWritingBook()}"></a>
+</div>
 </body>
 </html>
