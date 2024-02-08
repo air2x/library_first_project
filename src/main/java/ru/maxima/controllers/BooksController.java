@@ -26,7 +26,7 @@ public class BooksController {
 
     @GetMapping
     public String showAllBooks(Model model) {
-        model.addAttribute("books", bookDAO.index());
+        model.addAttribute("books", bookDAO.showAllBooks());
         return "view-with-all-books";
     }
 
@@ -34,7 +34,7 @@ public class BooksController {
     public String showBooks(@PathVariable("id") int id, Model model,
                             @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.showBook(id));
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", personDAO.showAllPeople());
         return "view-with-book-by-id";
     }
 

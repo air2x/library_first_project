@@ -18,7 +18,7 @@ public class BookDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Book> index() {
+    public List<Book> showAllBooks() {
         return jdbcTemplate.query("SELECT * FROM Book", new BookMapper());
     }
 

@@ -25,7 +25,7 @@ public class PeopleController {
 
     @GetMapping
     public String showAllPeople(Model model) {
-        model.addAttribute("people", personDAO.index());
+        model.addAttribute("people", personDAO.showAllPeople());
         return "view-with-all-people";
     }
 
