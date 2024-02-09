@@ -30,6 +30,13 @@ public class BooksController {
         return "view-with-all-books";
     }
 
+    @PatchMapping("/{id}/assign")
+    public String assignABook(@PathVariable("id") int id,
+                            @ModelAttribute("person") Person person) {
+        bookDAO.assignABook(person.getId(), id);
+        return "redirect:/books";
+    }
+
     @GetMapping("/{id}")
     public String showBooks(@PathVariable("id") int id, Model model,
                             @ModelAttribute("person") Person person) {
