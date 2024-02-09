@@ -22,9 +22,9 @@
 </form>
 <br/>
 <br/>
-<form th:method="PATCH" th:action="@{/books/assign}">
+<form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
     <label for="person">Выберите кому назначить книгу:</label>
-    <select th:object="${person}" th:field="*{id}" id="person" >
+    <select th:object="${person}" th:field="*{id}" id="person">
         <option th:each="person : ${people}" th:value="${person.getId()}"
                 th:text="${person.getFullName()}"></option>
         <input type="submit" value="Назначить книгу"/>

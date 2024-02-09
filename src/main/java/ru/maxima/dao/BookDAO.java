@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.maxima.model.Book;
 import ru.maxima.model.BookMapper;
+import ru.maxima.model.Person;
 
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class BookDAO {
         jdbcTemplate.update("DELETE FROM Book WHERE id=?", id);
     }
 
-    public void assignABook(int id, int personId){
-        jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?", personId, id);
+    public void assignABook(int id, Person person){
+        jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?", person.getId(), id);
     }
 }
