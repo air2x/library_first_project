@@ -29,7 +29,7 @@
 </form>
 <form th:if="${book.getPersonId()!=0}" th:method="PATCH" th:action="@{/books/{id}/freeTheBook(id=${book.getId()})}">
     <div th:if="${book.getPersonId()!=0}">
-        <div>Книга занята, в руках у:</div>
+        <div>Книга занята, находится у:</div>
         <a th:text="${whoHasTheBook}"></a>
     </div>
     <a th:href="@{/books/{id}/freeTheBook(id=${book.getId()})}">
