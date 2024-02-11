@@ -12,7 +12,8 @@
 <a th:text="${person.getYearOfBirth()}">Value</a>
 <br/>
 <br/>
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Изменить человека</a>
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Изменить человека"/> </a>
 <br/>
 <br/>
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
@@ -20,6 +21,7 @@
 </form>
 
 <hr/>
+<div th:if="${books.size()!=0}">
 <a>Книги на руках:</a>
 <div th:each="book : ${books}">
     <a th:href="@{/books/{id}(id=${book.getId()})}"
@@ -31,5 +33,9 @@
     <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getYearOfWritingBook()}"></a>
 </div>
+</div>
+ <div style="color: green" th:if="${books.size()==0}" >
+     <a>Этот человек еще не брал книг</a>
+ </div>
 </body>
 </html>

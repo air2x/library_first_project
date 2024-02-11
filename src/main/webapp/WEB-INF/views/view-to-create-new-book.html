@@ -14,7 +14,7 @@
     <input type="text" th:field="*{authorOfBook}" id="authorOfBook"/>
     <div style="color: red" th:if="${#fields.hasErrors('authorOfBook')}" th:errors="*{authorOfBook}">Year error</div>
     <br/>
-    <label for="yearOfWritingBook">Введиет год написания книги:</label>
+    <label for="yearOfWritingBook">Введите год написания книги:</label>
     <input type="text" th:field="*{yearOfWritingBook}" id="yearOfWritingBook"/>
     <div style="color: red" th:if="${#fields.hasErrors('yearOfWritingBook')}" th:errors="*{yearOfWritingBook}">Year
         error

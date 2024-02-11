@@ -2,12 +2,16 @@ package ru.maxima.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 import ru.maxima.model.Book;
 import ru.maxima.model.BookMapper;
 import ru.maxima.model.Person;
+import ru.maxima.model.PersonMapper;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -44,7 +48,26 @@ public class BookDAO {
         jdbcTemplate.update("DELETE FROM Book WHERE id=?", id);
     }
 
-    public void assignABook(int id, Person person){
+    public void assignABook(int id, Person person) {
         jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?", person.getId(), id);
     }
+
+    public String showsWhoHasTheBook(int id) {
+        List<String> fullName = jdbcTemplate.query("SELECT full_name FROM Person JOIN Book B on Person.id = B.person_id WHERE B.id=?",
+                new Object[]{id}, new RowMapper<String>(){
+                    public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        return rs.getString(1);
+                    }
+                });
+        if (fullName.isEmpty()) {
+            return null;
+        } else {
+            return fullName.get(0);
+        }
+    }
+
+    public void freeTheBook(int id) {
+        jdbcTemplate.update("UPDATE Book SET person_id=null WHERE id=?", id);
+    }
+
 }
