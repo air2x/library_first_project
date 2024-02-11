@@ -15,7 +15,8 @@
 <a th:text="${book.getYearOfWritingBook()}">Value</a>
 <br/>
 <br/>
-<form style="color: green" th:if="${book.getPersonId()==0}" th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
+<form style="color: green" th:if="${book.getPersonId()==0}" th:method="PATCH"
+      th:action="@{/books/{id}/assign(id=${book.getId()})}">
     <div style="color: green" th:if="${book.getPersonId()==0}">
         <div> Книга свободна</div>
         <label for="person">Выберите кому назначить книгу:</label>

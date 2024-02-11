@@ -46,6 +46,7 @@ public class BooksController {
         model.addAttribute("whoHasTheBook", bookDAO.showsWhoHasTheBook(id));
         return "view-with-book-by-id";
     }
+
     @PatchMapping("/{id}/freeTheBook")
     public String freeTheBook(@PathVariable("id") int id) {
         bookDAO.freeTheBook(id);

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import ru.maxima.model.Book;
 import ru.maxima.model.BookMapper;
 import ru.maxima.model.Person;
-import ru.maxima.model.PersonMapper;
-
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,7 +52,7 @@ public class BookDAO {
 
     public String showsWhoHasTheBook(int id) {
         List<String> fullName = jdbcTemplate.query("SELECT full_name FROM Person JOIN Book B on Person.id = B.person_id WHERE B.id=?",
-                new Object[]{id}, new RowMapper<String>(){
+                new Object[]{id}, new RowMapper<String>() {
                     public String mapRow(ResultSet rs, int rowNum) throws SQLException {
                         return rs.getString(1);
                     }
